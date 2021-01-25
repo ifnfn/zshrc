@@ -24,7 +24,10 @@ function load_file() {
 #命令别名 {{{
 alias df='gdf -h -x none'
 #历史命令 top10
-alias h10='print -l  ${(o)history%% *} | uniq -c | sort -nr | head -n 10'
+alias h10='history -10'
+alias h20='history -20'
+alias h50='history -50'
+alias h100='history -100'
 #}}}
  
 
