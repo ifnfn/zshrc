@@ -15,7 +15,8 @@ __gnu_utils() {
   local gcmds
   local gcmd
   local cmd
-  local prefix="/usr/local/bin"
+  local prefix="/opt/homebrew/bin"
+
 
   # coreutils 
   gcmds=('g[' 'gbase64' 'gbasename' 'gcat' 'gchcon' 'gchgrp' 'gchmod'
@@ -34,6 +35,7 @@ __gnu_utils() {
 
   # findutils
   gcmds+=('gfind' 'gxargs' 'glocate')
+  gcmds+=('gmake')
 
   # Not part of either coreutils or findutils, installed separately.
   gcmds+=('gsed' 'gtar' 'gtime' 'gmake')
