@@ -1,7 +1,6 @@
-export PATH=$HOME/.thead/riscv64-linux/bin:/usr/local/bin:/opt/gcc-csky-abiv2/bin:/opt/csky-elf/bin:/opt/csky-gcc-linux/bin:$PATH
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-
+eval "$([ -f /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew shellenv)"
 export LANG=en_US.UTF-8
+export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/
 
 autoload -Uz compinit
 compinit
@@ -11,7 +10,7 @@ autoload colors
 colors
 
 HIST_STAMPS="yyyy-mm-dd"
-for plugin in $(print -l ~/.zsh/[a-z]*); do
+for plugin in $(print -l ~/.zsh/[a-z]*.zsh); do
     [ -f $plugin ] && . $plugin
 done
 
@@ -23,6 +22,7 @@ function load_file() {
 
 #命令别名 {{{
 alias df='gdf -h -x none'
+alias mkcd='foo(){mkdir -p "$1"; cd "$1" }; foo '
 #历史命令 top10
 alias h10='history -10'
 alias h20='history -20'
@@ -51,6 +51,7 @@ FINISH="%{$terminfo[sgr0]%}"
 #命令提示符
 # setopt PROMPT_SUBST
 # PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW>$FINISH ")
+# PROMPT=$(echo "$CYAN%n@$YELLOW%L:$FG[039]$GREEN$(_fish_collapsed_pwd)%f > ")
  
 
 #编辑器
@@ -218,14 +219,17 @@ autoload compinstall
 setopt extended_glob
 TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
 
-eval "$(fasd --init auto)"
+eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
 
-alias a='fasd -a'        # any
-alias s='fasd -si'       # show / search / select
-alias d='fasd -d'        # directory
-alias f='fasd -f'        # file
-alias sd='fasd -sid'     # interactive directory selection
-alias sf='fasd -sif'     # interactive file selection
-alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-alias zz='fasd_cd -d -i' # cd with interactive selection
-alias v='f -e vim'       # quick opening files with vim
+# eval "$(fasd --init auto)"
+# alias a='fasd -a'        # any
+# alias s='fasd -si'       # show / search / select
+# alias d='fasd -d'        # directory
+# alias f='fasd -f'        # file
+# alias sd='fasd -sid'     # interactive directory selection
+# alias sf='fasd -sif'     # interactive file selection
+# alias z='fasd_cd -d'     # cd, same functionality as j in autojump
+# alias zz='fasd_cd -d -i' # cd with interactive selection
+# alias v='f -e vim'       # quick opening files with vim
+#
+source ~/.zsh/fzf.zsh
