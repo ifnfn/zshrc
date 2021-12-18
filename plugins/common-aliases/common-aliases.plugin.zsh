@@ -34,14 +34,12 @@ alias -g P="2>&1| pygmentize -l pytb"
 
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
-alias fd='find . -type d -name'
+(( $+commands[fd] )) || alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
 alias h='history'
 alias hgrep="fc -El 0 | grep"
 alias help='man'
-alias hs='history | grep'
-alias hsi='history | grep -i'
 alias p='ps -f'
 alias sortnr='sort -n -r'
 alias unexport='unset'

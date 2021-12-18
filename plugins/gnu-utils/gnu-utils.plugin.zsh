@@ -35,10 +35,9 @@ __gnu_utils() {
 
   # findutils
   gcmds+=('gfind' 'gxargs' 'glocate')
-  gcmds+=('gmake')
 
   # Not part of either coreutils or findutils, installed separately.
-  gcmds+=('gsed' 'gtar' 'gtime' 'gmake')
+  gcmds+=('gsed' 'gtar' 'gtime' 'gmake' 'ggrep')
 
   for gcmd in "${gcmds[@]}"; do
     # Do nothing if the command isn't found
@@ -48,7 +47,7 @@ __gnu_utils() {
     # lost if hash -r or rehash -f is executed. Thus, those two 
     # functions have to be wrapped.
     #
-    # hash ${gcmd[2,-1]}=${commands[$gcmd]}
+    hash ${gcmd[2,-1]}=${commands[$gcmd]}
 
     # This method generates wrapper functions.
     # It will override shell builtins.
@@ -58,7 +57,7 @@ __gnu_utils() {
     # This method is inflexible since the aliases are at risk of being
     # overridden resulting in the BSD coreutils being called.
     #
-    alias "$gcmd[2,-1]"="${prefix}/${gcmd//"["/"\\["}"
+    # alias "$gcmd[2,-1]"="${prefix}/${gcmd//"["/"\\["}"
   done
 
   return 0
@@ -82,3 +81,4 @@ function rehash() {
     builtin rehash "$@"
   fi
 }
+

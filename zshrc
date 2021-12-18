@@ -10,24 +10,26 @@ autoload colors
 colors
 
 HIST_STAMPS="yyyy-mm-dd"
-for plugin in $(print -l ~/.zsh/[a-z]*.zsh); do
+
+# load lib
+for plugin in $(print -l $(dirname $(readlink ~/.zshrc))/lib/[a-z]*.zsh); do
     [ -f $plugin ] && . $plugin
 done
 
-function load_file() {
-    [ -f $1 ] && . $1
-}
+# loading plugins
+PLUGIN_PWD=$(dirname $(readlink ~/.zshrc))/plugins
+plugins=(sudo fasd git iterm2 repo rsync man gnu-utils common-aliases colored-man-pages extract encode64 history)
+for plugin ($plugins); do
+    for zsh_file in $(print -l $PLUGIN_PWD/$plugin/[a-z]*.plugin.zsh); do
+        # echo $zsh_file
+        [ -f $zsh_file ] && . $zsh_file
+    done
+done
 
-# load_file $HOME/.zsh/Incr.zsh
 
 #命令别名 {{{
 alias df='gdf -h -x none'
 alias mkcd='foo(){mkdir -p "$1"; cd "$1" }; foo '
-#历史命令 top10
-alias h10='history -10'
-alias h20='history -20'
-alias h50='history -50'
-alias h100='history -100'
 #}}}
  
 
@@ -180,18 +182,6 @@ zle -N user-complete
 bindkey "\t" user-complete
 #}}}
  
-##在命令前插入 sudo {{{
-#定义功能
-sudo-command-line() {
-    [[ -z $BUFFER ]] && zle up-history
-    [[ $BUFFER != sudo\ * ]] && BUFFER="sudo $BUFFER"
-    zle end-of-line                 #光标移动到行末
-}
-zle -N sudo-command-line
-#定义快捷键为： [Esc] [Esc]
-bindkey "\e\e" sudo-command-line
-#}}}
-
  
 #{{{自定义补全
 #补全 ping
@@ -204,7 +194,7 @@ zstyle -e ':completion::*:*:*:hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~
  
 ####{{{
 function timeconv { date -d @$1 +"%Y-%m-%d %T" }
- 
+
 # }}}
  
 zmodload zsh/mathfunc
@@ -218,18 +208,3 @@ autoload compinstall
 #漂亮又实用的命令高亮界面
 setopt extended_glob
 TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
-
-eval "$(fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install)"
-
-# eval "$(fasd --init auto)"
-# alias a='fasd -a'        # any
-# alias s='fasd -si'       # show / search / select
-# alias d='fasd -d'        # directory
-# alias f='fasd -f'        # file
-# alias sd='fasd -sid'     # interactive directory selection
-# alias sf='fasd -sif'     # interactive file selection
-# alias z='fasd_cd -d'     # cd, same functionality as j in autojump
-# alias zz='fasd_cd -d -i' # cd with interactive selection
-# alias v='f -e vim'       # quick opening files with vim
-#
-source ~/.zsh/fzf.zsh

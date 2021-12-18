@@ -1,0 +1,7 @@
+alias h='history'
+alias hs='history | grep'
+alias hsi='history | grep -i'
+alias h10='history -10'
+alias h20='history -20'
+alias h50='history -50'
+alias h100='history -100'
