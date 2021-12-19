@@ -21,12 +21,12 @@ DISABLE_AUTO_UPDATE=true
 WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
 
 plugins=(
-    sudo fasd git iterm2 repo rsync man gnu-utils 
-    colored-man-pages extract encode64 history
-    jira macos web-search
-    common-aliases
-    prompt_fish
+    common-aliases sudo prompt_fish iterm2 gnu-utils history
     autosuggestions
+    git repo rsync man
+    colored-man-pages extract encode64
+    jira macos web-search
+    fasd ag fzf ripgrep
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -41,9 +41,9 @@ alias ncp='foo(){scp "$1"  ~/works/nvos/os/drivers/lxdrv/libs/liblx/include/$2};
 #编辑器
 export EDITOR=vim
 
-#杂项 {{{
-#允许在交互模式中使用注释  例如：
-#cmd #这是注释
+# {{{ 杂项
+# 允许在交互模式中使用注释  例如：
+# cmd #这是注释
 setopt INTERACTIVE_COMMENTS
  
 #禁用 core dumps
@@ -56,7 +56,7 @@ limit coredumpsize 0
 #}}}
  
  
-# {{{自定义补全
+# {{{ 自定义补全
 #补全 ping
 zstyle ':completion:*:ping:*' hosts 192.168.1.{1,50,51,100,101} www.google.com
  
@@ -71,7 +71,7 @@ zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
 # }}}
 
-##空行(光标在行首)补全 "cd " {{{
+## {{{ 空行(光标在行首)补全 "cd " 
 user-complete(){
     case $BUFFER in
         "" )                       # 空行填入 "cd "
