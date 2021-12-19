@@ -13,11 +13,8 @@ for plugin in $(print -l $ZSH/lib/[a-z]*.zsh); do
 done
 
 # loading plugins
-PLUGIN_PWD=$ZSH/plugins
-plugins=(sudo fasd git iterm2 repo rsync man gnu-utils common-aliases colored-man-pages extract encode64 history)
-
 for plugin ($plugins); do
-    plugin_file=$PLUGIN_PWD/$plugin/$plugin.plugin.zsh
+    plugin_file=$ZSH/plugins/$plugin/$plugin.plugin.zsh
     [ -f $plugin_file ] && source $plugin_file
 done
 

@@ -3,11 +3,19 @@ export LANG=en_US.UTF-8
 export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/
 
 export ZSH=$HOME/.zsh.git
+export JIRA_URL=https://jira.nioint.com
 
 # 命令补全时区别大小写
 CASE_SENSITIVE="true"
 HYPHEN_INSENSITIVE="true"
 HIST_STAMPS="yyyy-mm-dd"
+
+plugins=(
+    sudo fasd git iterm2 repo rsync man gnu-utils 
+    colored-man-pages extract encode64 history
+    jira macos web-search
+    common-aliases
+)
 
 source $ZSH/init.zsh
 
@@ -16,6 +24,10 @@ alias run-help >&/dev/null && unalias run-help
 autoload run-help
 bindkey '^h' run-help
 
+
+alias vv=vsplit_tab  # 竖分屏
+alias hh=split_tab   # 模分屏
+alias fy='trans :zh'
 
 #编辑器
 export EDITOR=vim
