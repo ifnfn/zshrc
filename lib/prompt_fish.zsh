@@ -33,9 +33,16 @@ if [ -n "$BASH_VERSION" ]; then
 else
     setopt PROMPT_SUBST
     if [ $UID -eq 0 ]; then
-	export PROMPT='$CYAN%n@$YELLOW%m:$FG[039]$(_fish_collapsed_pwd)%f # '
+	    export PROMPT='$CYAN%n@$YELLOW%m:$FG[039]$(_fish_collapsed_pwd)%f # '
     else
-	# PROMPT=$(echo "$CYAN%n@$YELLOW%M:$GREEN%/$_YELLOW>$FINISH ")
-	export PROMPT='$CYAN%n@$YELLOW%m:$FG[039]$GREEN$(_fish_collapsed_pwd)%f > '
+	    export PROMPT='$CYAN%n@$YELLOW%m:$FG[039]$GREEN$(_fish_collapsed_pwd)%f > '
     fi
 fi
+
+# PROMPT 颜色
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+    eval _$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+    eval $color='%{$fg[${(L)color}]%}'
+    (( count = $count + 1 ))
+done
+FINISH="%{$terminfo[sgr0]%}"
