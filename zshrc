@@ -102,6 +102,7 @@ bindkey "\t" user-complete
 zmodload zsh/mathfunc
 autoload -U zsh-mime-setup
 zsh-mime-setup
+zstyle ':mime:.sh:' handler 'sh %s'
 
 # 文件批量重命令
 autoload -U zmv
@@ -114,3 +115,5 @@ bindkey '^h' run-help
 #漂亮又实用的命令高亮界面
 setopt EXTENDED_GLOB
 TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
