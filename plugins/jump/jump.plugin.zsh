@@ -53,7 +53,6 @@ compctl -K _completemarks unmark
 _mark_expansion() {
 	setopt localoptions extendedglob
 	autoload -U modify-current-argument
-
 	modify-current-argument '$(readlink "$MARKPATH/$ARG" || echo "$ARG")'
 }
 zle -N _mark_expansion

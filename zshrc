@@ -2,6 +2,7 @@ eval "$([ -f /opt/homebrew/bin/brew ] && /opt/homebrew/bin/brew shellenv)"
 export LANG=en_US.UTF-8
 export REPO_URL=https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/
 
+# export PATH=$HOME/.local/bin:$PATH
 export ZSH=$HOME/.zsh.git
 export JIRA_URL=https://jira.nioint.com
 
@@ -23,7 +24,7 @@ WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
 plugins=(
     common-aliases sudo prompt_fish iterm2 gnu-utils history
     autosuggestions
-    git repo rsync man
+    git git-flow repo rsync man vscode
     colored-man-pages extract encode64
     jira macos web-search
     fasd ag fzf ripgrep
@@ -34,12 +35,17 @@ source $ZSH/oh-my-zsh.sh
 # 自定义别名
 alias vv=vsplit_tab  # 竖分屏
 alias hh=split_tab   # 模分屏
+alias vim=nvim
 alias fy='trans :zh'
-alias ncp='foo(){scp "$1"  ~/works/nvos/os/drivers/lxdrv/libs/liblx/include/$2}; foo '
+alias docker='$HOME/.local/bin/docker'
 [ -f /opt/homebrew/bin/cpio ] &&  alias cpio=/opt/homebrew/bin/cpio
 
+# alias kdiff=kitty +kitten diff
+export PROMPT='$CYAN%n@$YELLOWmac:$FG[039]$GREEN$(_fish_collapsed_pwd)%f > '
+
+
 #编辑器
-export EDITOR=vim
+export EDITOR=nvim
 
 # {{{ 杂项
 # 允许在交互模式中使用注释  例如：
@@ -51,7 +57,7 @@ limit coredumpsize 0
 
 # Emacs风格 键绑定
 # bindkey -e
-# bindkey -v
+bindkey -v
 
 #}}}
  
@@ -117,3 +123,11 @@ setopt EXTENDED_GLOB
 TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/zhiguo.zhu/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+#
