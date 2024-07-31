@@ -124,10 +124,10 @@ TOKENS_FOLLOWED_BY_COMMANDS=('|' '||' ';' '&' '&&' 'sudo' 'do' 'time' 'strace')
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/zhiguo.zhu/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=~/.loacl/bin:$PATH
 
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-#
+source /Users/zhiguo.zhu/.config/broot/launcher/bash/br
