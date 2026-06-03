@@ -23,11 +23,11 @@ WORDCHARS='*?_-[]~=&;!#$%^(){}<>'
 
 plugins=(
     common-aliases sudo prompt_fish gnu-utils history
-    autosuggestions
+    autosuggestions zsh-history-substring-search
     git git-flow repo rsync man
     colored-man-pages extract encode64
     jira web-search
-    fasd ag fzf ripgrep vscode
+    fasd ag ripgrep vscode
 )
 # macOS 专有插件条件加载
 [[ "$(uname)" = Darwin ]] && plugins+=(iterm2 macos)
